@@ -67,7 +67,7 @@
                 <configuration>
                     <systemProperties>
                         <browser.name>chrome</browser.name>
-<!--                        <base.url1>https://p.w3layouts.com/demos_new/template_demo/03-10-2020/photoflash-liberty-demo_Free/685659620/web/index.html?_ga=2.181802926.889871791.1632394818-2083132868.1632394818</base.url1>-->
+                        <base.urlPfoto>https://p.w3layouts.com/demos_new/template_demo/03-10-2020/photoflash-liberty-demo_Free/685659620/web/index.html?_ga=2.181802926.889871791.1632394818-2083132868.1632394818</base.urlPfoto>
                         <base.urlDuck>https://duckduckgo.com</base.urlDuck>
                         <base.url>https://otus.ru</base.url>
                     </systemProperties>

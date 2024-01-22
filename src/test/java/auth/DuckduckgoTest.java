@@ -7,30 +7,23 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import tools.WaitTools;
 
 public class DuckduckgoTest {
     private Logger logger = (Logger) LogManager.getLogger("WD7");
     private WebDriver driver;
     private String baseUrl = System.getProperty("base.urlDuck");
-    private WebDriverWait webDriverWait;
     private WaitTools waitTools;
 
     @BeforeEach
     private void driverInstallHeadless() {
-        driver = new DriverFactory().create();
-        logger.info("Driver installation");
-        waitTools = new WaitTools(driver);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        driver = new ChromeDriver(options);
+        driver = new DriverFactory().create(options);
+        waitTools = new WaitTools(driver);
         driver.get(baseUrl);
         logger.info("Open browser in headless");
-
-
     }
 
     @AfterEach
@@ -44,7 +37,6 @@ public class DuckduckgoTest {
     @Test
 
     public void duckduckHeadless() {
-
         WebElement elEnter = driver.findElement(By.cssSelector("#searchbox_input"));
         elEnter.click();
 //      В поисковой строке вводим "ОТУС" и кликаем по нему
@@ -56,7 +48,7 @@ public class DuckduckgoTest {
 
         WebElement elResult = driver.findElement(By.xpath("//span[contains(text(),'Онлайн‑курсы для профессионалов, дистанционное обучение современным ...')]"));
         Assertions.assertTrue(elResult.getText().contains("Онлайн‑курсы для профессионалов, дистанционное обучение"),
-                "В поисковой выдаче нет данного текста");
+                "Error: This text is not available in search results");
     }
 
 }

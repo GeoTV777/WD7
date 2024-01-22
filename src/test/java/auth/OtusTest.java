@@ -3,7 +3,6 @@ package auth;
 import factory.DriverFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.checkerframework.dataflow.qual.TerminatesExecution;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,14 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import tools.WaitTools;
 
-import java.time.Duration;
 
 public class OtusTest {
     private Logger logger = (Logger) LogManager.getLogger("WD7");
@@ -30,15 +25,12 @@ public class OtusTest {
 
     @BeforeEach
     public void init() {
-        driver = new DriverFactory().create();
-        logger.info("Driver installation");
-        waitTools = new WaitTools(driver);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
-        driver = new ChromeDriver(options);
+        driver = new DriverFactory().create(options);
+        waitTools = new WaitTools(driver);
         driver.get(baseUrl);
         logger.info("Open browser in maximized");
-
     }
 
         @AfterEach
@@ -77,6 +69,5 @@ public class OtusTest {
                 "Error: the element is present");
 //     Вывод в лог всех cookie
         System.out.println("Cookies: " + driver.manage().getCookies());
-
         }
 }

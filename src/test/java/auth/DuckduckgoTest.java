@@ -18,9 +18,7 @@ public class DuckduckgoTest {
 
     @BeforeEach
     private void driverInstallHeadless() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        driver = new DriverFactory().create(options);
+        driver = new DriverFactory("--headless").create();
         waitTools = new WaitTools(driver);
         driver.get(baseUrl);
         logger.info("Open browser in headless");

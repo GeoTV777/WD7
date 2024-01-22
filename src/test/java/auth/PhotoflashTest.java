@@ -22,9 +22,7 @@ public class PhotoflashTest {
 
     @BeforeEach
     private void driverInstallFullscreen() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-fullscreen");
-        driver = new DriverFactory().create(options);
+        driver = new DriverFactory("--start-fullscreen").create();
         waitTools = new WaitTools(driver);
         driver.get(baseUrl);
         logger.info("Open browser in fullscreen");

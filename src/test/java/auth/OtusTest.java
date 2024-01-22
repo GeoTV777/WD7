@@ -25,9 +25,7 @@ public class OtusTest {
 
     @BeforeEach
     public void init() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        driver = new DriverFactory().create(options);
+        driver = new DriverFactory("--start-maximized").create();
         waitTools = new WaitTools(driver);
         driver.get(baseUrl);
         logger.info("Open browser in maximized");

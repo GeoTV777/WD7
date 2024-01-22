@@ -10,13 +10,21 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class DriverFactory {
 
     private String browserName = System.getProperty("browser.name","chrome");
+    private String[] arguments;
 
-    public WebDriver create(ChromeOptions options) {
+    public DriverFactory(String... arguments) {
+        this.arguments = arguments;
+    }
+
+
+    public WebDriver create() {
         browserName = browserName.toLowerCase();
         switch (browserName){
             case "chrome": {
                 WebDriverManager.chromedriver().setup();
-                return new ChromeDriver(options);
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments(arguments);
+                return new ChromeDriver(chromeOptions);
             }
         }
         throw new BrowserNotSupportedException(browserName);
